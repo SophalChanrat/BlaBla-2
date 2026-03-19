@@ -7,8 +7,9 @@ import 'package:blabla/data/repositories/ride_preference/ride_preference_reposit
 import 'package:blabla/main_common.dart';
 import 'package:blabla/ui/states/ride_preference_state.dart';
 import 'package:provider/provider.dart';
+import 'package:provider/single_child_widget.dart';
 
-List<InheritedProvider> get providers {
+List<SingleChildWidget> get providers {
   final ridePrefRepository = RidePreferenceRepositoryMock();
 
   return [
@@ -16,7 +17,7 @@ List<InheritedProvider> get providers {
     Provider<RideRepository>(create: (_) => RideRepositoryMock(),),
     Provider<RidePreferenceRepository>(create: (_) => ridePrefRepository,),
 
-    ChangeNotifierProvider(create:  (_) => RidePreferenceState(ridePrefRepo: ridePrefRepository)),
+    ChangeNotifierProvider<RidePreferenceState>(create: (_) => RidePreferenceState(ridePrefRepo: ridePrefRepository)),
   ];
 }
 
